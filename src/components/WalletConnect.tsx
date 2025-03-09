@@ -1,10 +1,22 @@
 "use client";
 
-import { ConnectButton, darkTheme } from "thirdweb/react";
-import { inAppWallet } from "thirdweb/wallets";
+import { ConnectButton, ConnectButtonProps, darkTheme } from "thirdweb/react";
 import { chain } from "@/app/chain";
 import { client } from "@/app/client";
 import React from "react";
+import { useEffect, useState } from "react";
+import {
+    inAppWallet,
+    createWallet,
+} from "thirdweb/wallets";
+
+interface CustomProps extends ConnectButtonProps {
+    supportedNFTs?: { [x: number]: string[] };
+  }
+  
+  const CustomConnectButton: React.FC<CustomProps> = ({ supportedNFTs, ...props }) => {
+    return <ConnectButton {...props} />;
+  };
 
 const WalletConnect: React.FC = () => {
     return (
