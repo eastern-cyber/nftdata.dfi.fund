@@ -101,7 +101,7 @@ export default function Home() {
       <main className="flex flex-col items-center justify-center gap-8 w-full m-2">
       <div className="text-center">
           <p className="text-2xl font-bold mb-6">Blockchain Data</p>
-          <WalletConnect />
+          {/* <WalletConnect /> */}
         </div>        
         {loading ? (
           <p>Loading transactions...</p>
