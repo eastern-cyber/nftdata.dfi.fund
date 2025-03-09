@@ -23,15 +23,13 @@ function decodeTransferEvent(topics: string[] = []) {
 
   const extractAddress = (topic: string | undefined) => {
     if (!topic || topic.length < 42) return "N/A";
-    const hex = topic.startsWith("0x") ? topic.slice(2) : hex;
-    return "0x" + hex.slice(hex.length - 40);
+    return "0x" + topic.slice(topic.length - 40);
   };
 
   const hexToDecimal = (hex: string | undefined) => {
     if (!hex) return "Invalid Token ID";
     try {
-      hex = hex.startsWith("0x") ? hex.slice(2) : hex;
-      return BigInt("0x" + hex).toString();
+      return BigInt(hex).toString();
     } catch {
       return "Invalid Token ID";
     }
@@ -111,7 +109,6 @@ export default function Home() {
               <tr>
                 <th className="border border-gray-500 p-2">Transaction Hash</th>
                 <th className="border border-gray-500 p-2">From</th>
-                {/* <th className="border border-gray-500 p-2">To</th> */}
                 <th className="border border-gray-500 p-2 w-[30px]">Token ID</th>
                 <th className="border border-gray-500 p-2">Block Number</th>
                 <th className="border border-gray-500 p-2">Block Timestamp</th>
@@ -138,8 +135,7 @@ export default function Home() {
                       </a>
                     </td>
                     <td className="flex border border-gray-500 p-2">{decoded.from}</td>
-                    {/* <td className="border border-gray-500 p-2">{decoded.to}</td> */}
-                    <td className="border border-gray-500 p-2 w-[30px]">{decoded.tokenId.slice(0, 10)}...</td>
+                    <td className="border border-gray-500 p-2 w-[30px]">{decoded.tokenId}</td>
                     <td className="border border-gray-500 p-2">{decoded.block_number}</td>
                     <td className="border border-gray-500 p-2">
                       {new Date(decoded.block_timestamp * 1000).toLocaleString("en-GB", {
